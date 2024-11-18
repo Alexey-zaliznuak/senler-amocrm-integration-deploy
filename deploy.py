@@ -29,3 +29,6 @@ os.chdir("..")
 
 # Запускаем docker-compose
 execute("docker compose up --build -d")
+
+# Чистка
+execute("docker system prune -f")
