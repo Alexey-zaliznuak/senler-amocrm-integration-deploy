@@ -2,7 +2,7 @@ import os
 import platform
 
 
-sudo_prefix = "sudo" if platform.system() == "Linux" else ""
+sudo_prefix = "sudo " if platform.system() == "Linux" else ""
 
 
 def execute(cmd: str):
