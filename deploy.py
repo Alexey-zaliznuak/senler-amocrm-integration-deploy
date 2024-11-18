@@ -11,3 +11,6 @@ def execute(cmd: str):
 
 execute("git pull")
 execute("git submodule update --init --recursive")
+execute("cd backend && git pull && cd ..")
+execute("cd frontend && git pull && cd ..")
+execute("docker compose up --build -d")
