@@ -54,10 +54,10 @@ services:
 
   frontend:
     build: ./frontend
-    env_file: .env
-    # environment:
-    #   VITE_CLIENT_ID: ${AMO_CRM_CLIENT_ID}
-    #   VITE_REDIRECT_URI: ${AMO_CRM_REDIRECT_URI}
+    # env_file: .env
+    environment:
+      VITE_CLIENT_ID: 01957cec-3d1c-4cf2-a0cd-24958418520e
+      VITE_REDIRECT_URI: https://senler-amocrm.work.gd
     volumes:
       - static:/app/dist
 
