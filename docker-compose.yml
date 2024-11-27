@@ -40,6 +40,18 @@ services:
     volumes:
       - logs:/app/logs
 
+  admin:
+    build: ./backend
+    env_file: .env
+
+    command: npx prisma studio
+
+    depends_on:
+      - backend
+
+    ports:
+      - 5555:5555
+
   frontend:
     build: ./frontend
     environment:
