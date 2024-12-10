@@ -53,11 +53,12 @@ services:
       - 5555:5555
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
 
-    environment:
-      VITE_CLIENT_ID: ${AMO_CRM_CLIENT_ID}
-      VITE_REDIRECT_URI: ${AMO_CRM_REDIRECT_URI}
+      args:
+        VITE_CLIENT_ID: $AMO_CRM_CLIENT_ID
+        VITE_REDIRECT_URI: $AMO_CRM_REDIRECT_URI
 
     volumes:
       - static:/app/dist
