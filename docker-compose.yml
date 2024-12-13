@@ -35,7 +35,6 @@ services:
 
     depends_on:
       - db
-      # - elasticsearch
 
     volumes:
       - logs:/app/logs
