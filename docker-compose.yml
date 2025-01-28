@@ -40,9 +40,7 @@ services:
   #     - logs:/app/logs
 
   admin:
-    build:
-      context: ./backend
-      dockerfile: ./prisma-admin.dockerfile
+    build: ./backend
     env_file: .env
 
     command: npx prisma studio
