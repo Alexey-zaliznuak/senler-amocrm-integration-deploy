@@ -40,7 +40,15 @@ services:
       - logs:/app/logs
 
   admin:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: |
+        FROM node:18
+        WORKDIR /app
+        COPY package*.json ./
+        RUN npm install
+        COPY . .
+        CMD ["npx", "prisma", "studio"]
     env_file: .env
 
     command: npx prisma studio
