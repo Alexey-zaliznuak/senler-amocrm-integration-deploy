@@ -41,14 +41,8 @@ services:
 
   admin:
     build:
-      context: .
-      dockerfile: |
-        FROM node:18
-        WORKDIR /app
-        COPY package*.json ./
-        RUN npm install
-        COPY . .
-        CMD ["npx", "prisma", "studio"]
+      context: ./backend
+      dockerfile: ./prisma-admin.dockerfile
     env_file: .env
 
     command: npx prisma studio
