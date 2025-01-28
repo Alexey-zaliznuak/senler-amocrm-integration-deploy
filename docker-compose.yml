@@ -29,15 +29,15 @@ services:
       timeout: 5s
       retries: 10
 
-  # backend:
-  #   build: ./backend
-  #   env_file: .env
+  backend:
+    build: ./backend
+    env_file: .env
 
-  #   depends_on:
-  #     - db
+    depends_on:
+      - db
 
-  #   volumes:
-  #     - logs:/app/logs
+    volumes:
+      - logs:/app/logs
 
   admin:
     build: ./backend
