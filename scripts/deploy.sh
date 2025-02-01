@@ -2,9 +2,6 @@ DEPLOY_DIR=~/deploy
 
 cd $DEPLOY_DIR &&
 
-git config --global user.name "Alexey-zaliznuak" &&
-git config --global user.email "zaliznuak20@gmail.com" &&
-
 sudo git pull &&
 
 # Добавление безопасных директорий в конфигурацию Git
