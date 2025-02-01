@@ -36,7 +36,8 @@ cd
 alias force-deploy='
 DEPLOY_DIR=~/deploy &&
 cd $DEPLOY_DIR &&
-git reset --hard HEAD &&
+git fetch origin &&
+git reset --hard @{u} &&
 deploy &&
 cd
 '
