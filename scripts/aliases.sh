@@ -30,14 +30,13 @@ sudo git pull &&
 # Запуск Docker
 sudo docker compose -f $DEPLOY_DIR/docker-compose.yml up --build -d &&
 sudo docker system prune -f &&
-
 cd
 '
+
 alias force-deploy='
 DEPLOY_DIR=~/deploy &&
 cd $DEPLOY_DIR &&
 git fetch origin &&
 git reset --hard @{u} &&
-deploy &&
-cd
+deploy
 '
