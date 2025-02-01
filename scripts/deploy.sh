@@ -1,6 +1,5 @@
 DEPLOY_DIR=~/deploy
 
-
 cd $DEPLOY_DIR &&
 
 git config --global user.name "Alexey-zaliznuak" &&
@@ -30,10 +29,5 @@ sudo git pull &&
 # Запуск Docker
 sudo docker compose -f $DEPLOY_DIR/docker-compose.yml up --build -d &&
 sudo docker system prune -f &&
-
-cd $DEPLOY_DIR &&
-sudo git add . &&
-sudo git commit -m "updates" &&
-sudo git push &&
 
 cd
