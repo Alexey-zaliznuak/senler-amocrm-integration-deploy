@@ -33,4 +33,10 @@ sudo docker system prune -f &&
 
 cd
 '
-alias force-deploy=`git reset --hard HEAD && deploy`
+alias force-deploy='
+DEPLOY_DIR=~/deploy &&
+cd $DEPLOY_DIR &&
+git reset --hard HEAD &&
+deploy &&
+cd
+'
