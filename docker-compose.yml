@@ -33,6 +33,17 @@ services:
       timeout: 5s
       retries: 10
 
+  keydb:
+    image: eqalpha/keydb:latest
+    command: keydb-server --appendonly yes
+    volumes:
+      - keydb_data:/data
+    healthcheck:
+      test: ["CMD", "keydb-cli", "ping"]
+      interval: 3s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: ./backend
     env_file: .env
@@ -63,12 +74,8 @@ services:
     volumes:
       - static:/app/dist
 
-networks:
-  elk:
-    driver: bridge
-
 volumes:
-  elasticsearch_data:
+  keydb_data:
   postgres_data:
   static:
   logs:
