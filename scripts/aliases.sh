@@ -1,6 +1,7 @@
 alias back-logs="sudo docker compose -f /home/admin/deploy/docker-compose.yml logs backend -f"
 alias front-logs="sudo docker compose -f /home/admin/deploy/docker-compose.yml logs frontend -f"
 alias nginx-logs="sudo docker compose -f /home/admin/deploy/docker-compose.yml logs nginx -f"
+
 alias deploy='
 DEPLOY_DIR=~/deploy
 
