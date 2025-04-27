@@ -48,7 +48,14 @@ services:
       - nats_data:/data
       - ./configs/nats/nats.conf:/etc/nats/nats.conf
       - ./configs/nats/nats-init.sh:/nats-init.sh
-    command: ["-c", "/etc/nats/nats.conf", "-js"]
+    command: ["-c", "/etc/nats/nats.conf", "-js", "-m", "8222"]
+
+  nats-init:
+    image: natsio/nats-box:latest
+    volumes:
+      - ./configs/nats/nats-init.sh:/nats-init.sh
+    entrypoint: ["sleep", "10000000"]
+    restart: on-failure
 
   backend:
     build: ./backend
