@@ -39,6 +39,20 @@ services:
       timeout: 5s
       retries: 5
 
+  # rabbitmq:
+  #   image: rabbitmq:3.13-management
+  #   container_name: my_rabbitmq
+  #   hostname: rabbitmq-host
+  #   restart: always
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: administrator5657654335678675645356
+  #     RABBITMQ_DEFAULT_PASS: administrator5657654335678675645356
+  #   volumes:
+  #     - rabbitmq_data:/var/lib/rabbitmq
+
   nats:
     image: nats:latest
     ports:
@@ -50,19 +64,19 @@ services:
       - ./configs/nats/nats-init.sh:/nats-init.sh
     command: ["-c", "/etc/nats/nats.conf", "-js", "-m", "8222"]
 
-  nats-init:
-    image: natsio/nats-box:latest
-    volumes:
-      - ./configs/nats/nats-init.sh:/nats-init.sh
-    entrypoint: ["sleep", "10000000"]
-    restart: on-failure
+  # nats-init:
+  #   image: natsio/nats-box:latest
+  #   volumes:
+  #     - ./configs/nats/nats-init.sh:/nats-init.sh
+  #   entrypoint: ["sleep", "10000000"]
+  #   restart: on-failure
 
   backend:
     build: ./backend
     env_file: .env
     depends_on:
       - db
-      - nats
+      - rabbitmq
     volumes:
       - logs:/app/logs
 
@@ -84,6 +98,7 @@ services:
 
 volumes:
   keydb_data:
+  rabbitmq_data:
   postgres_data:
   static:
   logs:

@@ -1,0 +1,42 @@
+{
+  "vhosts": [{"name": "/"}],
+  "queues": [
+    {
+      "name": "main_queue",
+      "vhost": "/",
+      "durable": true,
+      "arguments": {
+        "x-dead-letter-exchange": "delayed_exchange",
+        "x-dead-letter-routing-key": "delayed_routing_key"
+      }
+    },
+    {
+      "name": "delayed_queue",
+      "vhost": "/",
+      "durable": true,
+      "arguments": {
+        "x-dead-letter-exchange": "",
+        "x-dead-letter-routing-key": "main_queue",
+        "x-message-ttl": 5000
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "delayed_exchange",
+      "vhost": "/",
+      "type": "x-delayed-message",
+      "durable": true,
+      "arguments": {"x-delayed-type": "direct"}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "delayed_exchange",
+      "vhost": "/",
+      "destination_type": "queue",
+      "destination": "delayed_queue",
+      "routing_key": "delayed_routing_key"
+    }
+  ]
+}
