@@ -39,37 +39,19 @@ services:
       timeout: 5s
       retries: 5
 
-  # rabbitmq:
-  #   image: rabbitmq:3.13-management
-  #   container_name: my_rabbitmq
-  #   hostname: rabbitmq-host
-  #   restart: always
-  #   ports:
-  #     - "5672:5672"
-  #     - "15672:15672"
-  #   environment:
-  #     RABBITMQ_DEFAULT_USER: administrator5657654335678675645356
-  #     RABBITMQ_DEFAULT_PASS: administrator5657654335678675645356
-  #   volumes:
-  #     - rabbitmq_data:/var/lib/rabbitmq
-
-  nats:
-    image: nats:latest
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: my_rabbitmq
+    hostname: rabbitmq-host
+    restart: always
     ports:
-      - "4222:4222"
-      - "8222:8222"
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: administrator5657654335678675645356
+      RABBITMQ_DEFAULT_PASS: administrator5657654335678675645356
     volumes:
-      - nats_data:/data
-      - ./configs/nats/nats.conf:/etc/nats/nats.conf
-      - ./configs/nats/nats-init.sh:/nats-init.sh
-    command: ["-c", "/etc/nats/nats.conf", "-js", "-m", "8222"]
-
-  # nats-init:
-  #   image: natsio/nats-box:latest
-  #   volumes:
-  #     - ./configs/nats/nats-init.sh:/nats-init.sh
-  #   entrypoint: ["sleep", "10000000"]
-  #   restart: on-failure
+      - rabbitmq_data:/var/lib/rabbitmq
 
   backend:
     build: ./backend
